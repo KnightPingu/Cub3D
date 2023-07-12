@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dopeyrat <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mprofett <mprofett@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:07:15 by dopeyrat          #+#    #+#             */
-/*   Updated: 2023/06/08 15:07:27 by dopeyrat         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:45:25 by mprofett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ void	set_player_start_pos(t_player *p, int i, int j, char dir)
 		p->a = (double)PI;
 	else
 		p->a = (double)0;
+	p->move_speed = WALK_SPEED;
+	p->rotation_speed = ROTATION_SPEED;
 }
 
 void	set_player(t_cube *data)
