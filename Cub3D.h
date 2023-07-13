@@ -6,7 +6,7 @@
 /*   By: mprofett <mprofett@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:37:03 by dopeyrat          #+#    #+#             */
-/*   Updated: 2023/07/12 16:09:41 by mprofett         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:13:09 by mprofett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@
 
 /*GAME SETUP*/
 
-# define WALK_SPEED 20
-# define RUN_SPEED 60
+# define WALK_SPEED 0.2
+# define RUN_SPEED 0.6
 # define ROTATION_SPEED 0.1
-# define WALL_HITBOX 10
+# define WALL_HITBOX 0.1
 
 /*KEYCODES*/
 

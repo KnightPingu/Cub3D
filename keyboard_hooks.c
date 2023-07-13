@@ -6,25 +6,23 @@
 /*   By: mprofett <mprofett@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:59:43 by mprofett          #+#    #+#             */
-/*   Updated: 2023/07/12 16:09:21 by mprofett         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:30:07 by mprofett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Cub3D.h"
 
-void	get_next_wall_distance(int direction, double *first_wall_distance) //THIS FUNCTION NEED TO BE CONNECTED WITH RAYCAST FUNCTION IN ORDER TO WORK
+/*void	first_wall_distance(int direction, double *first_wall_distance) //THIS FUNCTION NEED TO BE CONNECTED WITH RAYCAST FUNCTION IN ORDER TO WORK
 {
-	// if (direction == FORWARD)
-	// 	*first_wall_distance = vertical_ray_cast(FORWARD);
-	// else if (direction == BACKWARD)
-	// 	*first_wall_distance = vertical_ray_cast(BACKWARD);
-	// else if (direction == LEFT)
-	// 	*first_wall_distance = horizontal_ray_cast(LEFT);
-	// else if (direction == RIGHT)
-	// 	*first_wall_distance = horizontal_ray_cast(RIGHT);
-	(void) direction;
-	*first_wall_distance -= WALL_HITBOX;
-}
+	if (p->y_off > 0)
+		vertical_ray(data, (double)(3 / 2) * PI, vertical);
+	else
+		vertical_ray(data, (double)PI / 2, vertical);
+	if (p->x_off > 0)
+		horizontal_ray(data, 0, horizontal);
+	else
+		horizontal_ray(data, PI, horizontal);
+}*/
 
 int	ft_red_cross_hook(void)
 {
@@ -58,7 +56,7 @@ void	update_player_radiant(t_player *p, int key)
 	{
 		p->a -= p->rotation_speed;
 		if (p->a < 0)
-			p->a *= -1;
+			p->a += 2 * PI;
 	}
 	else if (key == TURN_RIGHT)
 	{
@@ -68,20 +66,22 @@ void	update_player_radiant(t_player *p, int key)
 	}
 }
 
-void	update_player_coordonates(t_player *p, int key)
+void	update_player_coordonates(t_cube *data, t_player *p, int key)
 {
-	double	new_pos_dist;
-	double	first_wall_distance;
+	t_ray	vertical;
+	t_ray	horizontal;
 
-	get_next_wall_distance(key, &first_wall_distance);
 	p->x_off = p->x + (cos(p->a) * p->move_speed);
 	p->y_off = p->y + (-1 * sin(p->a) * p->move_speed);
-	new_pos_dist = sqrt(pow((p->x_off - p->x), 2) + pow((p->y_off - p->y), 2));
-	if (first_wall_distance < new_pos_dist)
-	{
-		p->x_off = p->x + (cos(p->a) * first_wall_distance);
-		p->y_off = p->y + (-1 * sin(p->a) * first_wall_distance);
-	}
+	first_wall_distance(&vertical, &horizontal, p, data);
+	if (ft_abs_d(p->y_off) > ft_abs_d(vertical.distance) && p->y_off < 0)
+		p->y_off = vertical.distance + WALL_HITBOX;
+	else if (ft_abs_d(p->y_off) > ft_abs_d(vertical.distance))
+		p->y_off = vertical.distance - WALL_HITBOX;
+	if (ft_abs_d(p->x_off) > ft_abs_d(horizontal.distance) && p->x_off < 0)
+		p->x_off = horizontal.distance + WALL_HITBOX;
+	else if (ft_abs_d(p->x_off) > ft_abs_d(horizontal.distance))
+		p->x_off = horizontal.distance - WALL_HITBOX;
 	p->x = p->x_off;
 	p->y = p->y_off;
 }
