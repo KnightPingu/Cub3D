@@ -94,6 +94,13 @@ typedef struct s_display_datas
 	t_img	*new_img;
 }	t_display;
 
+typedef struct s_ray
+{
+	double	distance;
+	char	wall_face;
+	double	wall_h;
+}				t_ray;
+
 typedef struct s_cube
 {
 	t_player		*p;
