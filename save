@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cub3D.h                                            :+:      :+:    :+:   */
+/*   save                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mprofett <mprofett@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:37:03 by dopeyrat          #+#    #+#             */
-/*   Updated: 2023/07/14 15:36:24 by mprofett         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:35:22 by mprofett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,6 @@ typedef struct s_cube
 t_display	*init_display(char *map_name);
 t_img		*init_image(t_display *display);
 t_minimap	*init_minimap(void);
-
-/*IMAGE*/
-
-void		put_pixel_on_img(t_img *image, int x, int y, int color);
 
 /*KEYBOARD HOOKS*/
 

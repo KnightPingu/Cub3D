@@ -6,7 +6,7 @@
 /*   By: mprofett <mprofett@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:36:04 by dopeyrat          #+#    #+#             */
-/*   Updated: 2023/07/12 16:08:11 by mprofett         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:26:24 by mprofett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ void	ft_exit(t_cube *data, int status)
 
 int	main(int ac, char **argv)
 {
-	t_display *display;
 	t_cube	*data;
 	int		fd;
 
 	fd = check_args(ac, argv);
 	data = init_data(fd);
-	display = init_display(argv[1]);
-	//mlx_loop_hook (display->mlx, &ft_loop_hook, display);
-	mlx_hook(display->win, DESTROYNOTIFY, 0, &ft_red_cross_hook, 0);
-	mlx_hook(display->win, KEYPRESS, 0, &ft_key_press_hook, data);
-	mlx_hook(display->win, KEYRELEASE, 0, &ft_key_release_hook, data);
-	mlx_loop(display->mlx);
+	data->display = init_display(argv[1]);
+	data->minimap = init_minimap();
+	mlx_loop_hook (data->display->mlx, &ft_loop_hook, data);
+	mlx_hook(data->display->win, DESTROYNOTIFY, 0, &ft_red_cross_hook, 0);
+	mlx_hook(data->display->win, KEYPRESS, 0, &ft_key_press_hook, data);
+	mlx_hook(data->display->win, KEYRELEASE, 0, &ft_key_release_hook, data);
+	mlx_loop(data->display->mlx);
 	return (EXIT_SUCCESS);
 }

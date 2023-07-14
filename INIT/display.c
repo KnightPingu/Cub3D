@@ -6,7 +6,7 @@
 /*   By: mprofett <mprofett@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:17:14 by mprofett          #+#    #+#             */
-/*   Updated: 2023/07/12 15:45:53 by mprofett         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:11:05 by mprofett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,19 @@ t_img	*init_image(t_display *display)
 	if (!image->addr)
 		exit (EXIT_MALLOC);
 	return (image);
+}
+
+t_minimap	*init_minimap(void)
+{
+	t_minimap	*minimap;
+
+	minimap = malloc(sizeof(t_minimap));
+	if (!minimap)
+		exit (EXIT_MALLOC);
+	minimap->border = create_trgb(0, 100, 100, 100);
+	minimap->floor = create_trgb(0, 50, 50, 50);
+	minimap->fov = create_trgb(0, 150, 150, 150);
+	minimap->walls = create_trgb(0, 200, 200, 200);
+	minimap->empty = create_trgb(255, 0, 0, 0);
+	return (minimap);
 }
