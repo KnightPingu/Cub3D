@@ -6,7 +6,7 @@
 /*   By: mprofett <mprofett@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:37:03 by dopeyrat          #+#    #+#             */
-/*   Updated: 2023/07/14 15:36:24 by mprofett         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:52:37 by mprofett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # define VERTICAL 1080
 # define MINIMAP_CENTER_X 1795
 # define MINIMAP_CENTER_Y 125
+# define TEXTURE_WIDTH 64
+# define TEXTURE_HEIGHT 64
 //V_FOV = PI / 3
 # define V_FOV 1.04719755
 //H_FOV = 2 * arctan(tan(V_FOV / 2) * (HORIZONTAL / VERTICAL))
@@ -50,6 +52,7 @@
 # define RUN_SPEED 0.6
 # define ROTATION_SPEED 0.1
 # define WALL_HITBOX 0.1
+# define SPRITE_SPEED 20
 
 /*KEYCODES*/
 
@@ -79,15 +82,6 @@ typedef struct s_player
 	double	move_speed;
 }				t_player;
 
-typedef struct s_minimap
-{
-	unsigned int border;
-	unsigned int floor;
-	unsigned int walls;
-	unsigned int fov;
-	unsigned int empty;
-}	t_minimap;
-
 typedef struct s_img
 {
 	void		*mlx_img;
@@ -97,12 +91,33 @@ typedef struct s_img
 	int			endian;
 }	t_img;
 
+
+typedef struct s_map_textures
+{
+	t_img	*no;
+	t_img	*so;
+	t_img	*we;
+	t_img	*ea;
+}	t_map_datas;
+
+typedef struct s_minimap
+{
+	unsigned int border;
+	unsigned int floor;
+	unsigned int walls;
+	unsigned int fov;
+	unsigned int empty;
+}	t_minimap;
+
+
 typedef struct s_display_datas
 {
-	void		*mlx;
-	void		*win;
-	t_img		*old_img;
-	t_img		*new_img;
+	void			*mlx;
+	void			*win;
+	t_img			*old_img;
+	t_img			*new_img;
+	int				frame;
+	int				sprite_c;
 }	t_display;
 
 typedef struct s_ray
@@ -117,6 +132,7 @@ typedef struct s_cube
 	t_player		*p;
 	t_minimap		*minimap;
 	t_display		*display;
+	t_map_datas		*map_img;
 	char			**map;
 	int				m_y;
 	int				m_x;
@@ -133,8 +149,9 @@ typedef struct s_cube
 /*DISPLAY*/
 
 t_display	*init_display(char *map_name);
-t_img		*init_image(t_display *display);
+t_img		*init_fullscreen_image(void *mlx_ptdr);
 t_minimap	*init_minimap(void);
+t_map_datas	*init_map_textures(t_cube *datas);
 
 /*IMAGE*/
 
