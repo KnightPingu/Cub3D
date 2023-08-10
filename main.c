@@ -6,7 +6,7 @@
 /*   By: mprofett <mprofett@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:36:04 by dopeyrat          #+#    #+#             */
-/*   Updated: 2023/07/17 10:34:24 by mprofett         ###   ########.fr       */
+/*   Updated: 2023/08/10 14:56:16 by mprofett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int ac, char **argv)
 	data = init_data(fd);
 	data->display = init_display(argv[1]);
 	data->minimap = init_minimap();
-	data->map_img = init_map_textures(data);
+	// data->map_img = init_map_textures(data);
 	mlx_loop_hook (data->display->mlx, &ft_loop_hook, data);
 	mlx_hook(data->display->win, DESTROYNOTIFY, 0, &ft_red_cross_hook, 0);
 	mlx_hook(data->display->win, KEYPRESS, 0, &ft_key_press_hook, data);

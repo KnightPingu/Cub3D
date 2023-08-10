@@ -6,7 +6,7 @@
 /*   By: mprofett <mprofett@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 10:53:58 by mprofett          #+#    #+#             */
-/*   Updated: 2023/07/14 15:37:00 by mprofett         ###   ########.fr       */
+/*   Updated: 2023/08/10 15:44:09 by mprofett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void	render_minimap(t_img *image, t_cube *data)
 				else if (pixel_is_in_minimap(x, y) == 0)
 					put_pixel_on_minimap(image, data, &x, &y);
 			}
-			else
-				put_pixel_on_img(image, x, y, data->minimap->empty);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mprofett <mprofett@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:17:14 by mprofett          #+#    #+#             */
-/*   Updated: 2023/07/17 10:52:48 by mprofett         ###   ########.fr       */
+/*   Updated: 2023/08/10 14:56:08 by mprofett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_display	*init_display(char *map_name)
 		= mlx_new_window(display->mlx, HORIZONTAL, VERTICAL, map_name);
 	if (!display->win)
 		exit (EXIT_MALLOC);
-	display->old_img = NULL;
-	display->new_img = NULL;
+	display->old_img = init_fullscreen_image(display->mlx);
+	display->new_img = init_fullscreen_image(display->mlx);
 	display->frame = 0;
 	display->sprite_c = 0;
 	return (display);
